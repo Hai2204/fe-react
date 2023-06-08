@@ -1,6 +1,7 @@
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import routes from "./routes"
 import { useEffect } from "react";
+import PrivateRoute from "./PrivateRoute";
 
 export default function RouteConfig({ history }) {
     useEffect(() => {
@@ -9,14 +10,10 @@ export default function RouteConfig({ history }) {
     }, [history.location.pathname]);
 
     return <BrowserRouter>
-        <Routes onChange={yourHandler}>
+        <Routes>
             {routes.map(e => {
-                return <Route path={e.path} element={e.component} key={e.id} />
+                    return <Route path={e.path} element={<PrivateRoute {...e}/>} key={e.id} />
             })}
         </Routes>
     </BrowserRouter>
 }
-function yourHandler(previousRoute, nextRoute) {
-    //do your logic here
-    console.log(1231);
- }

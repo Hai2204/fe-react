@@ -2,6 +2,7 @@
 import Page1 from "components/Page";
 import Page404 from "page/error/NotFound";
 import Home from "page/home/Home";
+import Login from "page/login/Login";
 
 const routes = [
     {
@@ -9,6 +10,7 @@ const routes = [
         name: "Home",
         path: "/",
         title: "Trang Chủ",
+        auth: true,
         component: <Home />
     },
     {
@@ -16,20 +18,31 @@ const routes = [
         name: "Home",
         path: "/home.html",
         title: "Trang Chủ 1",
-        component:  <Home />
+        auth: true,
+        component: <Home />
     },
     {
         id: 3,
         name: "page",
         path: "/page.html",
         title: "page",
-        component:  <Page1 />
+        auth: false,
+        component: <Page1 />
+    },
+    {
+        id: 4,
+        name: "login",
+        path: "/login.html",
+        title: "Đăng Nhập",
+        auth: false,
+        component: <Login />
     },
     {
         id: 99,
         name: "NotFound",
         path: "*",
         title: "Trang không tồn tại",
+        auth: true,
         component: <Page404 />
     },
 ];
