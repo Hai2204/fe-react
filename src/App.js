@@ -1,4 +1,5 @@
-import Page404 from 'page/error/page_404';
+
+import Page404 from 'page/error/NotFound';
 import Home from 'page/home/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
