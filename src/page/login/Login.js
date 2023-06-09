@@ -15,6 +15,7 @@ import { useState } from "react";
 export default function Login() {
     const [loadDing, setLoadDing] = useState(false);
     const isAuth = useSelector(isAuthenlicated);
+    console.log(isAuth);
     const { enqueueSnackbar } = useSnackbar();
     const dispatch = useDispatch()
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function Login() {
     };
 
     return (
-        isAuth ? navigate("/home.html") :
+        // isAuth ? navigate("/home.html") :
             <Container component="main" maxWidth="lg">
                 <Box
                     sx={{

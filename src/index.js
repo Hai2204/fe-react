@@ -7,6 +7,7 @@ import { store } from './store/index';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from "history";
 import NotistackWrapper from 'components/notistackwrapper/NotistackWrapper';
+import AuthProvider from 'components/authProvider/AuthProvider';
 
 const history = createBrowserHistory();
 
@@ -16,7 +17,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <NotistackWrapper>
-          <App history={history}/>
+        <AuthProvider>
+          <App history={history} />
+        </AuthProvider>
       </NotistackWrapper>
     </Provider>,
   </React.StrictMode>
