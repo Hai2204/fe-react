@@ -5,8 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './store/index';
 import { Provider } from 'react-redux';
-import RouteConfig from './routers/routeConfig';
 import { createBrowserHistory } from "history";
+import NotistackWrapper from 'components/notistackwrapper/NotistackWrapper';
 
 const history = createBrowserHistory();
 
@@ -15,9 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouteConfig history={history}>
-        <App />
-      </RouteConfig>
+      <NotistackWrapper>
+          <App history={history}/>
+      </NotistackWrapper>
     </Provider>,
   </React.StrictMode>
 );

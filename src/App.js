@@ -1,17 +1,24 @@
 
-import Page404 from 'page/error/NotFound';
-import Home from 'page/home/Home';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PrivateRoute from 'routers/PrivateRoute';
+import routes from 'routers/routes';
 
 
-function App() {
+function App({ history }) {
+  useEffect(() => {
+    const title = routes.find(e => e.path === history.location.pathname);
+    document.title = title?.title || "Trang không tồn tại";
+}, [history.location.pathname]);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="123/" element={<Page404 />} />
-      </Routes>
-    </Router>
+    <BrowserRouter>
+        <Routes>
+            {routes.map(e => {
+                return <Route path={e.path} element={<PrivateRoute {...e} />} key={e.id} />
+            })}
+        </Routes>
+    </BrowserRouter>
   );
 }
 
