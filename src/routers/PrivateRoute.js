@@ -1,26 +1,23 @@
-import { getToken } from "page/login/store/loginSlice";
+import Login from "page/login/Login";
+import { isAuthenlicated } from "page/login/store/loginSlice";
 import { Suspense, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router";
+import { useLocation } from "react-router";
 
-function PrivateRoute({ auth, component }) {
+function PrivateRoute({ title, component }) {
+  const isAuth = useSelector(isAuthenlicated);
+  const [authenlicated, setAuthenlicated] = useState(isAuth);
+  const location = useLocation();
 
-  const [authenlicated, setAuthenlicated] = useState(auth);
-  const token = useSelector(getToken);
-
-  
   useEffect(() => {
-    setAuthenlicated(auth);
-  }, [auth]);
-
-  // useEffect(() => {
-  //   setAuthenlicated(!!token);
-  // }, [token]);
+    document.title = title;
+    setAuthenlicated(isAuth);
+  }, [location.pathname, isAuth, title]);
 
   return (
-    !authenlicated
+    authenlicated
       ? <Suspense fallback={<div>Loading...</div>}>{component}</Suspense>
-      : <Navigate to="/login.html" replace={true} />
+      : <Login />
   );
 }
 export default PrivateRoute;
